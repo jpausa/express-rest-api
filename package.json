@@ -1,0 +1,15 @@
+{
+  "name": "express-rest-api",
+  "version": "1.0.0",
+  "description": "a simple rest api using express",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node --watch app.js"
+  },
+  "keywords": [],
+  "author": "Jorge Pausa",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}
