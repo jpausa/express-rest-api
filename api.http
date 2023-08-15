@@ -4,8 +4,32 @@ GET http://localhost:1234/movies
 
 ### Retrieve a movie from its ID
 
-GET http://localhost:1234/movies/1
+GET http://localhost:1234/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
 
 ### Retrieveall the movies from a genre
 
-GET http://localhost:1234/movies?genre=horror
+GET http://localhost:1234/movies?genre=Sci-Fi
+
+### Create a new movie
+
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+{
+    "title": "Oppenheimer",
+    "year": 2023,
+    "director": "Christopher Nolan",
+    "duration": 180,
+    "poster": "https://www.imdb.com/title/tt15398776/mediaviewer/rm2670601217/?ref_=tt_ov_i",
+    "genre": ["Biography", "Drama", "History"],
+    "rate": 8.6
+}
+
+### Update a movie
+
+PATCH http://localhost:1234/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
+Content-Type: application/json
+
+{
+  "rate": 9.5  
+}
