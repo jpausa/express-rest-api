@@ -1,0 +1,11 @@
+### Retrieve all the movies
+
+GET http://localhost:1234/movies
+
+### Retrieve a movie from its ID
+
+GET http://localhost:1234/movies/1
+
+### Retrieveall the movies from a genre
+
+GET http://localhost:1234/movies?genre=horror
