@@ -1,6 +1,6 @@
 import cors from "cors"
 
-export const corsMiddleware = () => {
+export const corsMiddleware = () =>
   cors({
     origin: (origin, callback) => {
       const ACCEPTED_ORIGINS = [
@@ -13,4 +13,3 @@ export const corsMiddleware = () => {
       return new Error("Not allowed by CORS")
     },
   })
-}
