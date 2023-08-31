@@ -1,10 +1,25 @@
 const express = require("express")
 const crypto = require("node:crypto")
 const movies = require("./movies.json")
+const cors = require("cors")
 const { validateMovie, validatePartialMovie } = require("./schemas/movies")
 
 const app = express()
 app.use(express.json())
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const ACCEPTED_ORIGINS = [
+        "http://localhost:3000",
+        "https://movies-app-react.netlify.app",
+      ]
+      if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+        return callback(null, true)
+      }
+      return new Error("Not allowed by CORS")
+    },
+  })
+)
 app.disable("x-powered-by")
 
 const PORT = process.env.PORT || 1234
