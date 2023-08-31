@@ -1,28 +1,14 @@
 import express, { json } from "express"
 import { randomUUID } from "node:crypto"
-import cors from "cors"
 import { validateMovie, validatePartialMovie } from "./schemas/movies.js"
-import { createRequire } from "node:module"
+import { readJSON } from "./utils/custom-require.js"
+import { corsMiddleware } from "./middlewares/cors.js"
 
-const require = createRequire(import.meta.url)
-const movies = require("./movies.json")
+const movies = readJSON("../movies.json")
 
 const app = express()
 app.use(json())
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      const ACCEPTED_ORIGINS = [
-        "http://localhost:3000",
-        "https://movies-app-react.netlify.app",
-      ]
-      if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
-        return callback(null, true)
-      }
-      return new Error("Not allowed by CORS")
-    },
-  })
-)
+app.use(corsMiddleware())
 app.disable("x-powered-by")
 
 const PORT = process.env.PORT || 1234
