@@ -2,6 +2,7 @@
   "name": "express-rest-api",
   "version": "1.0.0",
   "description": "a simple rest api using express",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
