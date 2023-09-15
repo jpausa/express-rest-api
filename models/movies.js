@@ -34,12 +34,12 @@ export class MovieModel {
     if (movieIndex < 0) {
       return false
     }
-    console.log(data)
+
     const updatedMovie = {
       ...movies[movieIndex],
       ...data,
     }
-    console.log(updatedMovie)
+    
     movies[movieIndex] = updatedMovie
     return updatedMovie
   }
