@@ -1,10 +1,10 @@
-import { readJSON } from "../utils/custom-require.js"
-import { randomUUID } from "node:crypto"
+import { readJSON } from '../utils/custom-require.js'
+import { randomUUID } from 'node:crypto'
 
-const movies = readJSON("../movies.json")
+const movies = readJSON('../movies.json')
 
 export class MovieModel {
-  static async getAll({ genre }) {
+  static async getAll ({ genre }) {
     if (genre) {
       return movies.filter((movie) =>
         movie.genre.some(
@@ -15,20 +15,20 @@ export class MovieModel {
     return movies
   }
 
-  static async getById({ id }) {
+  static async getById ({ id }) {
     return movies.find((movie) => movie.id === id)
   }
 
-  static async create({ data }) {
+  static async create ({ data }) {
     const newMovie = {
       id: randomUUID(),
-      ...data,
+      ...data
     }
     movies.push(newMovie)
     return newMovie
   }
 
-  static async update({ id, data }) {
+  static async update ({ id, data }) {
     const movieIndex = movies.findIndex((movie) => movie.id === id)
 
     if (movieIndex < 0) {
@@ -37,9 +37,9 @@ export class MovieModel {
 
     const updatedMovie = {
       ...movies[movieIndex],
-      ...data,
+      ...data
     }
-    
+
     movies[movieIndex] = updatedMovie
     return updatedMovie
   }

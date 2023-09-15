@@ -1,28 +1,27 @@
-import { MovieModel } from "../models/movies"
-import { validateMovie, validatePartialMovie } from "../schemas/movies.js"
-import { MovieModel } from "../models/movies.js"
+import { MovieModel } from '../models/movies'
+import { validateMovie, validatePartialMovie } from '../schemas/movies.js'
 
 export class MovieController {
-  constructor(movieService) {
+  constructor (movieService) {
     this.movieService = movieService
   }
 
-  static async getAllMovies(req, res) {
+  static async getAllMovies (req, res) {
     const { genre } = req.query
 
     const movies = await MovieModel.getAll({ genre })
     return res.json(movies)
   }
 
-  static async getMovieById(req, res) {
+  static async getMovieById (req, res) {
     const { id } = req.params
     const movie = await MovieModel.getById({ id })
 
     if (movie) return res.json(movie)
-    return res.status(404).json({ error: "Movie not found" })
+    return res.status(404).json({ error: 'Movie not found' })
   }
 
-  static async createMovie(req, res) {
+  static async createMovie (req, res) {
     const body = req.body
     const validationResult = validateMovie(body)
     if (validationResult.error) {
@@ -33,7 +32,7 @@ export class MovieController {
     return res.status(201).json(newMovie)
   }
 
-  static async updateMovie(req, res) {
+  static async updateMovie (req, res) {
     const body = req.body
 
     const validationResult = validatePartialMovie(body)
@@ -46,6 +45,6 @@ export class MovieController {
     const updatedMovie = await MovieModel.update({ id, data: body })
 
     if (updatedMovie) return res.json(updatedMovie)
-    return res.status(404).json({ error: "Movie not found" })
+    return res.status(404).json({ error: 'Movie not found' })
   }
 }
