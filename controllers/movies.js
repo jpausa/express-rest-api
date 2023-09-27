@@ -47,4 +47,12 @@ export class MovieController {
     if (updatedMovie) return res.json(updatedMovie)
     return res.status(404).json({ error: 'Movie not found' })
   }
+
+  static async deleteMovieById (req, res) {
+    const { id } = req.params
+    const movies = await MovieModel.delete({ id })
+
+    if (movies) return res.json(movies)
+    return res.status(404).json({ error: 'Movie not found' })
+  }
 }

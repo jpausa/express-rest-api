@@ -6,7 +6,11 @@ GET http://localhost:1234/movies
 
 GET http://localhost:1234/movies/a7d9475e-5967-11ee-8c92-3984ea0a6f13
 
-### Retrieveall the movies from a genre
+### Delete a movie from it ID
+
+DELETE http://localhost:1234/movies/8c1f743c-5c7f-11ee-80f9-b4e55e28aff6
+
+### Retrieve all the movies from a genre
 
 GET http://localhost:1234/movies?genre=Sci-Fi
 
@@ -27,9 +31,9 @@ Content-Type: application/json
 
 ### Update a movie
 
-PATCH http://localhost:1234/movies/5ad1a235-0d9c-410a-b32b-220d91689a08
+PATCH http://localhost:1234/movies/a7d9475e-5967-11ee-8c92-3984ea0a6f13
 Content-Type: application/json
 
 {
-  "rate": 9.5  
+  "rate": 9.0  
 }

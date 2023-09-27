@@ -34,8 +34,31 @@ export class MovieModel {
     }
   }
 
-  static async update ({ id, data }) {}
-  static async delete ({ id }) {}
+  static async update ({ id, data }) {
+    const { title, year, director, duration, poster, rate } = data
+
+    try {
+      await connection.query(
+        'UPDATE movie SET title = IFNULL(?, title), year = IFNULL(?, year), director = IFNULL(?, director), duration = IFNULL(?, duration), poster = IFNULL(?, poster), rate = IFNULL(?, rate) WHERE id = UUID_TO_BIN(?);',
+        [title, year, director, duration, poster, rate, id]
+      )
+
+      const movie = this.getById({ id })
+      return movie
+    } catch (error) {
+      throw new Error('There was an error when trying to update the movie')
+    }
+  }
+
+  static async delete ({ id }) {
+    try {
+      await connection.query('DELETE FROM movie WHERE id = UUID_TO_BIN(?);', [id])
+      return this.getAll({ genre: null })
+    } catch (error) {
+      throw new Error('There was an error when trying to delete the movie')
+    }
+  }
+
   static async create ({ data }) {
     const { title, year, director, duration, poster, rate } = data
 
