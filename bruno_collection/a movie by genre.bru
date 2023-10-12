@@ -1,0 +1,15 @@
+meta {
+  name:  a movie by genre
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:1234/movies?genre=Sci-Fi
+  body: none
+  auth: none
+}
+
+query {
+  genre: Sci-Fi
+}

@@ -1,0 +1,21 @@
+meta {
+  name: update a movie by ID
+  type: http
+  seq: 6
+}
+
+patch {
+  url: http://localhost:1234/movies/a7d9475e-5967-11ee-8c92-3984ea0a6f13
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "rate": 9.0  
+  }
+}

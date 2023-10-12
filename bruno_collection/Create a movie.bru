@@ -1,0 +1,27 @@
+meta {
+  name: Create a movie
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:1234/movies
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "title": "Oppenheimer",
+      "year": 2023,
+      "director": "Christopher Nolan",
+      "duration": 180,
+      "poster": "https://www.imdb.com/title/tt15398776/mediaviewer/rm2670601217/?ref_=tt_ov_i",
+      "genre": ["Biography", "Drama", "History"],
+      "rate": 8.6
+  }
+}
