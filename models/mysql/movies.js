@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise'
 
-const config = {
+const defaultConfig = {
   host: 'localhost',
   user: 'root',
   port: 3306,
@@ -8,7 +8,9 @@ const config = {
   database: 'moviesdb'
 }
 
-const connection = await mysql.createConnection(config)
+const connectionConfig = process.env.DATABASE_URL || defaultConfig
+
+const connection = await mysql.createConnection(connectionConfig)
 
 export class MovieModel {
   static async getAll ({ genre }) {
@@ -52,7 +54,9 @@ export class MovieModel {
 
   static async delete ({ id }) {
     try {
-      await connection.query('DELETE FROM movie WHERE id = UUID_TO_BIN(?);', [id])
+      await connection.query('DELETE FROM movie WHERE id = UUID_TO_BIN(?);', [
+        id
+      ])
       return this.getAll({ genre: null })
     } catch (error) {
       throw new Error('There was an error when trying to delete the movie')
