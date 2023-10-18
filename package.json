@@ -5,7 +5,7 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "start:mysql": "node --watch app-mysql.js",
+    "start": "node --watch app-mysql.js",
     "start:local": "node --watch app-local.js",
     "dev": "node --watch app.js"
   },
